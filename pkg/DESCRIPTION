@@ -1,0 +1,29 @@
+Package: linktaxa
+Type: Package
+Title: Link two taxonomic reference lists
+Version: 0.1-1
+Date: 2013-12-06
+Author: Roland Kaiser
+Maintainer: Roland Kaiser <kardinal.eros@gmail.com>
+Depends: R (>= 3.0.1), stringdist
+Suggests: pbapply
+Description: Takes two character vectors of scientific taxon names and performs and exhaustive search for possible analogs. The package provides tools to accommodate linking against infra specific taxon.
+License: GPL (>= 2)
+Encoding: UTF-8
+LazyLoad: yes
+LazyData: yes
+Collate: isWhat.R
+         stripWhat.R
+         dropInfraspecific.R
+         expandSensuStricto.R
+         asSensuStricto.R
+         addSensuStricto.R
+         subHybrid.R
+         seekTaxon.R
+         judgePenalty.R
+         zeroPenalty.R
+         relaxPenalty.R
+         compareGenus.R
+         queuePenalty.R
+         linktaxa.R
+
