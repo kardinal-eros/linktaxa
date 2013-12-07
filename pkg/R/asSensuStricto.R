@@ -1,12 +1,11 @@
-#	Strip of subspecies and (ssp., subsp) and replace with s.str. (nominotypical taxon)
-
 asSensuStricto <- function (x, y = "s.str.") {
 	if (length(x) != 1) {
 		stop("x must be of length one, use sapply(x, asSensuStricto) for longer vectors",
 			call. = FALSE)
 	}
-	if (!isSensuStricto(x)) {	
-		r <- paste(dropInfraspecific(x, y = c("ssp.", "supsp.")), "s.str.")
+	if (!isSensuStricto(x)) {
+		#	warning: must compare x[2] aignst x[3]
+		r <- paste(dropIntraspecific(x, y = c("ssp.", "supsp.")), "s.str.")
 	}
 	else {
 		r <- x
@@ -14,7 +13,3 @@ asSensuStricto <- function (x, y = "s.str.") {
 	return(r)
 }
 
-# example
-#asSensuStricto(x = "Quercus pubescens ssp. pubescens")
-#x <- c("Abietinella abietina var. abietina", "Luzula spicata ssp. conglomerata")
-#sapply(x, asSensuStricto)

@@ -2,66 +2,47 @@
 \alias{linktaxa}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Link two species lists
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+A single function internally calling subroutines and returning an ordered data frame of string matches.
 }
 \usage{
 linktaxa(x, y, ...)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
-  \item{x}{
-%%     ~~Describe \code{x} here~~
+  \item{ x }{
+a character.
 }
-  \item{y}{
-%%     ~~Describe \code{y} here~~
+  \item{ y }{
+a character.
 }
-  \item{\dots}{
-%%     ~~Describe \code{\dots} here~~
+  \item{ \dots }{
+arguments passed to
 }
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+Nothing here yet.
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
+a data.frame.
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
+\author{
+Roland Kaiser
+}
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+\code{\link{isWhat}}, \code{\link{stripAll}}
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+data(taxa)
 
-## The function is currently defined as
-function (x, y, ...) 
-{
-    require(pbapply)
-    r <- pbsapply(x, function(x) seekTaxon(x, y), simplify = FALSE)
-    q <- queuePenalty(r, ...)
-    df <- .castList(q)
-  }
+res <- linktaxa(taxa, reference)
+head(res[, 1:3])
+
+tail(res[, 1:3])
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ manip }
+

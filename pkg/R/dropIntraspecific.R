@@ -1,6 +1,4 @@
-#	Strip of infra specific taxon (ssp., subsp, var.)
-
-dropInfraspecific <- function (x, y) {
+dropIntraspecific <- function (x, y) {
 	#	x = "Gentiana bavarica var. subacaulis"
 	if (missing(y)) {
 		y <- c(
@@ -12,7 +10,7 @@ dropInfraspecific <- function (x, y) {
 	}
 	else {
 		if (length(x) != 1) {
-			stop("x must be of length one, use sapply(x, dropInfraspecific) for vectors",
+			stop("x must be of length one, use sapply(x, dropIntraspecific) for vectors",
 				call. = FALSE)
 		}
 		x <- strsplit(x, " ", fixed = TRUE)[[1]]		
@@ -40,13 +38,3 @@ dropInfraspecific <- function (x, y) {
 		return(r)
 	}
 }
-#example
-# show default pattern
-#dropInfraspecific()
-#dropInfraspecific(x = "Luzula spicata ssp. conglomerata")
-#dropInfraspecific(x = "Abietinella abietina var. abietina")
-#dropInfraspecific(x = "Abietinella abietina Var. abietina", y = "Var.")
-#for vectors use *apply
-#x <- c("Abietinella abietina var. abietina", "Luzula spicata ssp. conglomerata")
-#sapply(x, dropInfraspecific)
-	

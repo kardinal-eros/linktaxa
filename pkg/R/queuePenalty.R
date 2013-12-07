@@ -1,4 +1,3 @@
-#	Order matched based on penalty score
 queuePenalty <- function (x, ...) {
 	stopifnot(is.list(x))
 	#	order by penaltiy

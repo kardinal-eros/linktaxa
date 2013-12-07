@@ -8,6 +8,3 @@ subHybrid <- function (x) {
 		return(x)
 	}
 }
-
-#subHybrid(x = "Mentha × dumetorum")
-#subHybrid(x0 = "Mentha dumetorum")

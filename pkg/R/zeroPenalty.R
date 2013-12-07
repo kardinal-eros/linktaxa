@@ -1,4 +1,3 @@
-#	Strict matches
 zeroPenalty <- function (x) {
 	if (is.list(x)) {
 		r <- vector("logical", length(x))

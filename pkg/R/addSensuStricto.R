@@ -6,4 +6,3 @@ addSensuStricto <- function (x) {
 	}
 	return(r)
 }
-#addSensuStricto(x = "Arenaria ciliata s.lat")

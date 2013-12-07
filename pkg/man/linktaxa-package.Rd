@@ -1,42 +1,36 @@
 \name{linktaxa-package}
 \alias{linktaxa-package}
-\alias{linktaxa}
+
 \docType{package}
 \title{
-What the package does (short line)
-~~ package title ~~
+Link two related but not necessarily identical species lists
 }
 \description{
-More about what it does (maybe more than one line)
-~~ A concise (1-5 lines) description of the package ~~
+A package to link two related but not necessarily identical scientific species lists using approximate string matching. The package further provides tools to accommodate various tasks on species names.
 }
 \details{
 \tabular{ll}{
 Package: \tab linktaxa\cr
 Type: \tab Package\cr
-Version: \tab 1.0\cr
+Version: \tab 0.1-1\cr
 Date: \tab 2013-12-06\cr
-License: \tab What license is it under?\cr
+License: \tab  GPL (>= 2)\cr
 }
-~~ An overview of how to use the package, including the most important ~~
-~~ functions ~~
+The main function \code{\link{linktaxa}} takes two character vectors of scientific taxon names and performs an exhaustive search for possible analogs. \code{\link{judgePenalty}} computes penalty scores for retrieved matches. \code{\link{queuePenalty}} performs reordering based on these scores. 
 }
 \author{
-Who wrote it
+Maintainer: Roland Kaiser <kardinal.eros@gmail.com>
 
-Maintainer: Who to complain to <yourfault@somewhere.net>
-~~ The author and/or maintainer of the package ~~
 }
 \references{
-~~ Literature or other references for background information ~~
+Jansen, F. & Dengler, J. (2010). Plant names in vegetation databases - a neglected source of bias. Journal of Vegetation Science, 21:1179–1186.
 }
-~~ Optionally other standard keywords, one per line, from file KEYWORDS in ~~
-~~ the R documentation directory ~~
+
 \keyword{ package }
+
 \seealso{
-~~ Optional links to other man pages, e.g. ~~
-~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
+\code{\link[Taxonstand:TPL]{Taxonstand}}
 }
 \examples{
-~~ simple examples of the most important functions ~~
+# nothing here yet
 }

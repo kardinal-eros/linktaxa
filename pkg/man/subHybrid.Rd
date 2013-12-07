@@ -1,64 +1,34 @@
-\name{subHybrid}
+\name{sub}
 \alias{subHybrid}
-%- Also NEED an '\alias' for EACH other topic documented here.
+
 \title{
-%%  ~~function to do ... ~~
+Replace special strings
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Replace multiplication sign (\code{"\u00D7"}) with x glyph.
 }
+
 \usage{
 subHybrid(x)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
-  \item{x}{
-%%     ~~Describe \code{x} here~~
+  \item{ x }{
+a character.
 }
 }
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
+
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
-\references{
-%% ~put references to the literature/web site here ~
-}
+a character.}
+
 \author{
-%%  ~~who you are~~
+Roland Kaiser
 }
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+\code{\link{stripAll}}
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (x) 
-{
-    if (any(isHybrid(x))) {
-        r <- gsub("<U+00D7>", "x", x, fixed = TRUE)
-        return(r)
-    }
-    else {
-        return(x)
-    }
-  }
+subHybrid(x = "Mentha × dumetorum") # \u00D7 (multiplication sign)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ manip }
+

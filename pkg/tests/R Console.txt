@@ -1,0 +1,1047 @@
+
+R version 3.0.2 (2013-09-25) -- "Frisbee Sailing"
+Copyright (C) 2013 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin10.8.0 (64-bit)
+
+R ist freie Software und kommt OHNE JEGLICHE GARANTIE.
+Sie sind eingeladen, es unter bestimmten Bedingungen weiter zu verbreiten.
+Tippen Sie 'license()' or 'licence()' für Details dazu.
+
+R ist ein Gemeinschaftsprojekt mit vielen Beitragenden.
+Tippen Sie 'contributors()' für mehr Information und 'citation()',
+um zu erfahren, wie R oder R packages in Publikationen zitiert werden können.
+
+Tippen Sie 'demo()' für einige Demos, 'help()' für on-line Hilfe, oder
+'help.start()' für eine HTML Browserschnittstelle zur Hilfe.
+Tippen Sie 'q()', um R zu verlassen.
+
+[R.app GUI 1.62 (6558) x86_64-apple-darwin10.8.0]
+
+> library(linktaxa)
+Lade nötiges Paket: stringdist
+Lade nötiges Paket: parallel
+> data(taxa)
+> taxa
+ [1] "Achillea millefolium ssp. sudetica"      
+ [2] "Antennaria carpatica"                    
+ [3] "Anthoxanthum alpinum"                    
+ [4] "Briza media"                             
+ [5] "Campanula pulla"                         
+ [6] "Carex capillaris"                        
+ [7] "Carex flacca ssp. flacca"                
+ [8] "Carex ornithopodoides"                   
+ [9] "Cephaloziella rubella var. rubella"      
+[10] "Chaerophyllum villarsii"                 
+[11] "Cirsium spinosissimum"                   
+[12] "Cladonia furcata ssp. furcata"           
+[13] "Cladonia phyllophora"                    
+[14] "Cladonia sulphurina"                     
+[15] "Crepis alpestris"                        
+[16] "Crepis aurea ssp. aurea"                 
+[17] "Ctenidium molluscum var. molluscum"      
+[18] "Cystopteris alpina"                      
+[19] "Cystopteris fragilis s.str."             
+[20] "Dactylorhiza majalis ssp. alpestris"     
+[21] "Dichodontium pellucidum"                 
+[22] "Dicranum brevifolium"                    
+[23] "Globularia nudicaulis"                   
+[24] "Gymnadenia conopsea ssp. conopsea"       
+[25] "Heliosperma pusillum ssp. pusillum"      
+[26] "Hieracium pilosum"                       
+[27] "Hypnum procerrimum"                      
+[28] "Isopterygiopsis pulchella var. nitidula" 
+[29] "Juncus jacquinii"                        
+[30] "Larix decidua"                           
+[31] "Leontodon hispidus s.lat."               
+[32] "Lophozia sudetica"                       
+[33] "Malaxis monophyllos ssp. monophyllos"    
+[34] "Minuartia cherlerioides ssp. quadrifaria"
+[35] "Mnium thomsonii"                         
+[36] "Moehringia ciliata"                      
+[37] "Nardia geoscyphus"                       
+[38] "Parmelia saxatilis"                      
+[39] "Phleum hirsutum"                         
+[40] "Pleurozium schreberi"                    
+[41] "Potentilla crantzii"                     
+[42] "Ptilidium ciliare"                       
+[43] "Racomitrium lanuginosum"                 
+[44] "Rhododendron × intermedium"              
+[45] "Rhytidium rugosum"                       
+[46] "Saxifraga bryoides"                      
+[47] "Schistidium sp."                         
+[48] "Silene acaulis ssp. longiscapa"          
+[49] "Thelypteris limbosperma"                 
+[50] "Weissia sp."                             
+> isWhat(taxa)
+                                         isSensuLato isSensuStricto isSubspecies
+Achillea millefolium ssp. sudetica             FALSE          FALSE         TRUE
+Antennaria carpatica                           FALSE          FALSE        FALSE
+Anthoxanthum alpinum                           FALSE          FALSE        FALSE
+Briza media                                    FALSE          FALSE        FALSE
+Campanula pulla                                FALSE          FALSE        FALSE
+Carex capillaris                               FALSE          FALSE        FALSE
+Carex flacca ssp. flacca                       FALSE          FALSE         TRUE
+Carex ornithopodoides                          FALSE          FALSE        FALSE
+Cephaloziella rubella var. rubella             FALSE          FALSE        FALSE
+Chaerophyllum villarsii                        FALSE          FALSE        FALSE
+Cirsium spinosissimum                          FALSE          FALSE        FALSE
+Cladonia furcata ssp. furcata                  FALSE          FALSE         TRUE
+Cladonia phyllophora                           FALSE          FALSE        FALSE
+Cladonia sulphurina                            FALSE          FALSE        FALSE
+Crepis alpestris                               FALSE          FALSE        FALSE
+Crepis aurea ssp. aurea                        FALSE          FALSE         TRUE
+Ctenidium molluscum var. molluscum             FALSE          FALSE        FALSE
+Cystopteris alpina                             FALSE          FALSE        FALSE
+Cystopteris fragilis s.str.                    FALSE           TRUE        FALSE
+Dactylorhiza majalis ssp. alpestris            FALSE          FALSE         TRUE
+Dichodontium pellucidum                        FALSE          FALSE        FALSE
+Dicranum brevifolium                           FALSE          FALSE        FALSE
+Globularia nudicaulis                          FALSE          FALSE        FALSE
+Gymnadenia conopsea ssp. conopsea              FALSE          FALSE         TRUE
+Heliosperma pusillum ssp. pusillum             FALSE          FALSE         TRUE
+Hieracium pilosum                              FALSE          FALSE        FALSE
+Hypnum procerrimum                             FALSE          FALSE        FALSE
+Isopterygiopsis pulchella var. nitidula        FALSE          FALSE        FALSE
+Juncus jacquinii                               FALSE          FALSE        FALSE
+Larix decidua                                  FALSE          FALSE        FALSE
+Leontodon hispidus s.lat.                       TRUE          FALSE        FALSE
+Lophozia sudetica                              FALSE          FALSE        FALSE
+Malaxis monophyllos ssp. monophyllos           FALSE          FALSE         TRUE
+Minuartia cherlerioides ssp. quadrifaria       FALSE          FALSE         TRUE
+Mnium thomsonii                                FALSE          FALSE        FALSE
+Moehringia ciliata                             FALSE          FALSE        FALSE
+Nardia geoscyphus                              FALSE          FALSE        FALSE
+Parmelia saxatilis                             FALSE          FALSE        FALSE
+Phleum hirsutum                                FALSE          FALSE        FALSE
+Pleurozium schreberi                           FALSE          FALSE        FALSE
+Potentilla crantzii                            FALSE          FALSE        FALSE
+Ptilidium ciliare                              FALSE          FALSE        FALSE
+Racomitrium lanuginosum                        FALSE          FALSE        FALSE
+Rhododendron × intermedium                     FALSE          FALSE        FALSE
+Rhytidium rugosum                              FALSE          FALSE        FALSE
+Saxifraga bryoides                             FALSE          FALSE        FALSE
+Schistidium sp.                                FALSE          FALSE        FALSE
+Silene acaulis ssp. longiscapa                 FALSE          FALSE         TRUE
+Thelypteris limbosperma                        FALSE          FALSE        FALSE
+Weissia sp.                                    FALSE          FALSE        FALSE
+                                         isVariety isHybrid isAffinis isAggregate
+Achillea millefolium ssp. sudetica           FALSE    FALSE     FALSE       FALSE
+Antennaria carpatica                         FALSE    FALSE     FALSE       FALSE
+Anthoxanthum alpinum                         FALSE    FALSE     FALSE       FALSE
+Briza media                                  FALSE    FALSE     FALSE       FALSE
+Campanula pulla                              FALSE    FALSE     FALSE       FALSE
+Carex capillaris                             FALSE    FALSE     FALSE       FALSE
+Carex flacca ssp. flacca                     FALSE    FALSE     FALSE       FALSE
+Carex ornithopodoides                        FALSE    FALSE     FALSE       FALSE
+Cephaloziella rubella var. rubella            TRUE    FALSE     FALSE       FALSE
+Chaerophyllum villarsii                      FALSE    FALSE     FALSE       FALSE
+Cirsium spinosissimum                        FALSE    FALSE     FALSE       FALSE
+Cladonia furcata ssp. furcata                FALSE    FALSE     FALSE       FALSE
+Cladonia phyllophora                         FALSE    FALSE     FALSE       FALSE
+Cladonia sulphurina                          FALSE    FALSE     FALSE       FALSE
+Crepis alpestris                             FALSE    FALSE     FALSE       FALSE
+Crepis aurea ssp. aurea                      FALSE    FALSE     FALSE       FALSE
+Ctenidium molluscum var. molluscum            TRUE    FALSE     FALSE       FALSE
+Cystopteris alpina                           FALSE    FALSE     FALSE       FALSE
+Cystopteris fragilis s.str.                  FALSE    FALSE     FALSE       FALSE
+Dactylorhiza majalis ssp. alpestris          FALSE    FALSE     FALSE       FALSE
+Dichodontium pellucidum                      FALSE    FALSE     FALSE       FALSE
+Dicranum brevifolium                         FALSE    FALSE     FALSE       FALSE
+Globularia nudicaulis                        FALSE    FALSE     FALSE       FALSE
+Gymnadenia conopsea ssp. conopsea            FALSE    FALSE     FALSE       FALSE
+Heliosperma pusillum ssp. pusillum           FALSE    FALSE     FALSE       FALSE
+Hieracium pilosum                            FALSE    FALSE     FALSE       FALSE
+Hypnum procerrimum                           FALSE    FALSE     FALSE       FALSE
+Isopterygiopsis pulchella var. nitidula       TRUE    FALSE     FALSE       FALSE
+Juncus jacquinii                             FALSE    FALSE     FALSE       FALSE
+Larix decidua                                FALSE    FALSE     FALSE       FALSE
+Leontodon hispidus s.lat.                    FALSE    FALSE     FALSE       FALSE
+Lophozia sudetica                            FALSE    FALSE     FALSE       FALSE
+Malaxis monophyllos ssp. monophyllos         FALSE    FALSE     FALSE       FALSE
+Minuartia cherlerioides ssp. quadrifaria     FALSE    FALSE     FALSE       FALSE
+Mnium thomsonii                              FALSE    FALSE     FALSE       FALSE
+Moehringia ciliata                           FALSE    FALSE     FALSE       FALSE
+Nardia geoscyphus                            FALSE    FALSE     FALSE       FALSE
+Parmelia saxatilis                           FALSE    FALSE     FALSE       FALSE
+Phleum hirsutum                              FALSE    FALSE     FALSE       FALSE
+Pleurozium schreberi                         FALSE    FALSE     FALSE       FALSE
+Potentilla crantzii                          FALSE    FALSE     FALSE       FALSE
+Ptilidium ciliare                            FALSE    FALSE     FALSE       FALSE
+Racomitrium lanuginosum                      FALSE    FALSE     FALSE       FALSE
+Rhododendron × intermedium                   FALSE     TRUE     FALSE       FALSE
+Rhytidium rugosum                            FALSE    FALSE     FALSE       FALSE
+Saxifraga bryoides                           FALSE    FALSE     FALSE       FALSE
+Schistidium sp.                              FALSE    FALSE     FALSE       FALSE
+Silene acaulis ssp. longiscapa               FALSE    FALSE     FALSE       FALSE
+Thelypteris limbosperma                      FALSE    FALSE     FALSE       FALSE
+Weissia sp.                                  FALSE    FALSE     FALSE       FALSE
+> reference
+ [1] "Achillea millefolium ssp. sudetica"        
+ [2] "Antennaria carpatica"                      
+ [3] "Anthoxanthum alpinum"                      
+ [4] "Briza media"                               
+ [5] "Bryum creberrimum"                         
+ [6] "Campanula pulla"                           
+ [7] "Carex capillaris"                          
+ [8] "Carex flacca ssp. flacca"                  
+ [9] "Carex ornithopodoides"                     
+[10] "Cephaloziella rubella var. rubella"        
+[11] "Chaerophyllum villarsii"                   
+[12] "Cirsium spinosissimum"                     
+[13] "Cladonia furcata ssp. furcata"             
+[14] "Cladonia phyllophora"                      
+[15] "Cladonia sulphurina"                       
+[16] "Crepis alpestris"                          
+[17] "Crepis aurea"                              
+[18] "Ctenidium molluscum"                       
+[19] "Ctenidium procerrimum"                     
+[20] "Cystopteris alpina"                        
+[21] "Cystopteris fragilis"                      
+[22] "Cystopteris fragilis agg."                 
+[23] "Dactylorhiza majalis ssp. alpestris"       
+[24] "Dichodontium pellucidum"                   
+[25] "Dicranum brevifolium"                      
+[26] "Globularia nudicaulis"                     
+[27] "Gymnadenia conopsea ssp. conopsea"         
+[28] "Hieracium pilosum"                         
+[29] "Hygrohypnum ochraceum"                     
+[30] "Hypnum recurvatum"                         
+[31] "Isopterygiopsis pulchella"                 
+[32] "Juncus jacquinii"                          
+[33] "Larix decidua"                             
+[34] "Leontodon hispidus"                        
+[35] "Leontodon hispidus ssp. alpinus"           
+[36] "Leontodon hispidus ssp. hastilis"          
+[37] "Leontodon hispidus ssp. hyoseroides"       
+[38] "Leontodon hispidus ssp. opimus"            
+[39] "Leontodon hispidus ssp. pseudocrispus"     
+[40] "Lophozia sudetica"                         
+[41] "Malaxis monophyllos"                       
+[42] "Minuartia cherlerioides"                   
+[43] "Minuartia cherlerioides ssp. cherlerioides"
+[44] "Mnium thomsonii"                           
+[45] "Moehringia ciliata"                        
+[46] "Nardia geoscyphus"                         
+[47] "Parmelia saxatilis"                        
+[48] "Phleum hirsutum"                           
+[49] "Pleurozium schreberi"                      
+[50] "Potentilla crantzii"                       
+[51] "Ptilidium ciliare"                         
+[52] "Racomitrium lanuginosum"                   
+[53] "Rhododendron x intermedium"                
+[54] "Rhytidium rugosum"                         
+[55] "Saxifraga bryoides"                        
+[56] "Schistidium sp."                           
+[57] "Silene acaulis ssp. longiscapa"            
+[58] "Thelypteris limbosperma"                   
+[59] "Weissia sp."                               
+> seekTaxon(taxa, reference)
+[1] "Achillea millefolium ssp. sudetica"
+Warnmeldungen:
+1: In agrep(x, y, max.distance = 0.05, ignore.case = TRUE) :
+  Argument 'pattern' hat einen Länge > 1 und nur das erste Element wird benutzt
+2: In if (x0 == r[1]) { :
+  Bedingung hat Länge > 1 und nur das erste Element wird benutzt
+> traceback()
+Kein traceback vefügbar 
+> reference
+ [1] "Achillea millefolium ssp. sudetica"        
+ [2] "Antennaria carpatica"                      
+ [3] "Anthoxanthum alpinum"                      
+ [4] "Briza media"                               
+ [5] "Bryum creberrimum"                         
+ [6] "Campanula pulla"                           
+ [7] "Carex capillaris"                          
+ [8] "Carex flacca ssp. flacca"                  
+ [9] "Carex ornithopodoides"                     
+[10] "Cephaloziella rubella var. rubella"        
+[11] "Chaerophyllum villarsii"                   
+[12] "Cirsium spinosissimum"                     
+[13] "Cladonia furcata ssp. furcata"             
+[14] "Cladonia phyllophora"                      
+[15] "Cladonia sulphurina"                       
+[16] "Crepis alpestris"                          
+[17] "Crepis aurea"                              
+[18] "Ctenidium molluscum"                       
+[19] "Ctenidium procerrimum"                     
+[20] "Cystopteris alpina"                        
+[21] "Cystopteris fragilis"                      
+[22] "Cystopteris fragilis agg."                 
+[23] "Dactylorhiza majalis ssp. alpestris"       
+[24] "Dichodontium pellucidum"                   
+[25] "Dicranum brevifolium"                      
+[26] "Globularia nudicaulis"                     
+[27] "Gymnadenia conopsea ssp. conopsea"         
+[28] "Hieracium pilosum"                         
+[29] "Hygrohypnum ochraceum"                     
+[30] "Hypnum recurvatum"                         
+[31] "Isopterygiopsis pulchella"                 
+[32] "Juncus jacquinii"                          
+[33] "Larix decidua"                             
+[34] "Leontodon hispidus"                        
+[35] "Leontodon hispidus ssp. alpinus"           
+[36] "Leontodon hispidus ssp. hastilis"          
+[37] "Leontodon hispidus ssp. hyoseroides"       
+[38] "Leontodon hispidus ssp. opimus"            
+[39] "Leontodon hispidus ssp. pseudocrispus"     
+[40] "Lophozia sudetica"                         
+[41] "Malaxis monophyllos"                       
+[42] "Minuartia cherlerioides"                   
+[43] "Minuartia cherlerioides ssp. cherlerioides"
+[44] "Mnium thomsonii"                           
+[45] "Moehringia ciliata"                        
+[46] "Nardia geoscyphus"                         
+[47] "Parmelia saxatilis"                        
+[48] "Phleum hirsutum"                           
+[49] "Pleurozium schreberi"                      
+[50] "Potentilla crantzii"                       
+[51] "Ptilidium ciliare"                         
+[52] "Racomitrium lanuginosum"                   
+[53] "Rhododendron x intermedium"                
+[54] "Rhytidium rugosum"                         
+[55] "Saxifraga bryoides"                        
+[56] "Schistidium sp."                           
+[57] "Silene acaulis ssp. longiscapa"            
+[58] "Thelypteris limbosperma"                   
+[59] "Weissia sp."                               
+> x
+Fehler: Objekt 'x' nicht gefunden
+> taxa
+ [1] "Achillea millefolium ssp. sudetica"      
+ [2] "Antennaria carpatica"                    
+ [3] "Anthoxanthum alpinum"                    
+ [4] "Briza media"                             
+ [5] "Campanula pulla"                         
+ [6] "Carex capillaris"                        
+ [7] "Carex flacca ssp. flacca"                
+ [8] "Carex ornithopodoides"                   
+ [9] "Cephaloziella rubella var. rubella"      
+[10] "Chaerophyllum villarsii"                 
+[11] "Cirsium spinosissimum"                   
+[12] "Cladonia furcata ssp. furcata"           
+[13] "Cladonia phyllophora"                    
+[14] "Cladonia sulphurina"                     
+[15] "Crepis alpestris"                        
+[16] "Crepis aurea ssp. aurea"                 
+[17] "Ctenidium molluscum var. molluscum"      
+[18] "Cystopteris alpina"                      
+[19] "Cystopteris fragilis s.str."             
+[20] "Dactylorhiza majalis ssp. alpestris"     
+[21] "Dichodontium pellucidum"                 
+[22] "Dicranum brevifolium"                    
+[23] "Globularia nudicaulis"                   
+[24] "Gymnadenia conopsea ssp. conopsea"       
+[25] "Heliosperma pusillum ssp. pusillum"      
+[26] "Hieracium pilosum"                       
+[27] "Hypnum procerrimum"                      
+[28] "Isopterygiopsis pulchella var. nitidula" 
+[29] "Juncus jacquinii"                        
+[30] "Larix decidua"                           
+[31] "Leontodon hispidus s.lat."               
+[32] "Lophozia sudetica"                       
+[33] "Malaxis monophyllos ssp. monophyllos"    
+[34] "Minuartia cherlerioides ssp. quadrifaria"
+[35] "Mnium thomsonii"                         
+[36] "Moehringia ciliata"                      
+[37] "Nardia geoscyphus"                       
+[38] "Parmelia saxatilis"                      
+[39] "Phleum hirsutum"                         
+[40] "Pleurozium schreberi"                    
+[41] "Potentilla crantzii"                     
+[42] "Ptilidium ciliare"                       
+[43] "Racomitrium lanuginosum"                 
+[44] "Rhododendron × intermedium"              
+[45] "Rhytidium rugosum"                       
+[46] "Saxifraga bryoides"                      
+[47] "Schistidium sp."                         
+[48] "Silene acaulis ssp. longiscapa"          
+[49] "Thelypteris limbosperma"                 
+[50] "Weissia sp."                             
+> x = taxa; y = reference
+> #	save for final validation
+> 	x0 <- x
+> 	
+> 	#	clean up string
+> 	if (strip) {
++ 		x <- stripAll(x)
++ 	}
+Fehler: Objekt 'strip' nicht gefunden
+> strip = TRUE
+> #	save for final validation
+> 	x0 <- x
+> 	
+> 	#	clean up string
+> 	if (strip) {
++ 		x <- stripAll(x)
++ 	}
+> x
+        Achillea millefolium ssp. sudetica 
+      "Achillea millefolium ssp. sudetica" 
+                      Antennaria carpatica 
+                    "Antennaria carpatica" 
+                      Anthoxanthum alpinum 
+                    "Anthoxanthum alpinum" 
+                               Briza media 
+                             "Briza media" 
+                           Campanula pulla 
+                         "Campanula pulla" 
+                          Carex capillaris 
+                        "Carex capillaris" 
+                  Carex flacca ssp. flacca 
+                "Carex flacca ssp. flacca" 
+                     Carex ornithopodoides 
+                   "Carex ornithopodoides" 
+        Cephaloziella rubella var. rubella 
+      "Cephaloziella rubella var. rubella" 
+                   Chaerophyllum villarsii 
+                 "Chaerophyllum villarsii" 
+                     Cirsium spinosissimum 
+                   "Cirsium spinosissimum" 
+             Cladonia furcata ssp. furcata 
+           "Cladonia furcata ssp. furcata" 
+                      Cladonia phyllophora 
+                    "Cladonia phyllophora" 
+                       Cladonia sulphurina 
+                     "Cladonia sulphurina" 
+                          Crepis alpestris 
+                        "Crepis alpestris" 
+                   Crepis aurea ssp. aurea 
+                 "Crepis aurea ssp. aurea" 
+        Ctenidium molluscum var. molluscum 
+      "Ctenidium molluscum var. molluscum" 
+                        Cystopteris alpina 
+                      "Cystopteris alpina" 
+               Cystopteris fragilis s.str. 
+                    "Cystopteris fragilis" 
+       Dactylorhiza majalis ssp. alpestris 
+     "Dactylorhiza majalis ssp. alpestris" 
+                   Dichodontium pellucidum 
+                 "Dichodontium pellucidum" 
+                      Dicranum brevifolium 
+                    "Dicranum brevifolium" 
+                     Globularia nudicaulis 
+                   "Globularia nudicaulis" 
+         Gymnadenia conopsea ssp. conopsea 
+       "Gymnadenia conopsea ssp. conopsea" 
+        Heliosperma pusillum ssp. pusillum 
+      "Heliosperma pusillum ssp. pusillum" 
+                         Hieracium pilosum 
+                       "Hieracium pilosum" 
+                        Hypnum procerrimum 
+                      "Hypnum procerrimum" 
+   Isopterygiopsis pulchella var. nitidula 
+ "Isopterygiopsis pulchella var. nitidula" 
+                          Juncus jacquinii 
+                        "Juncus jacquinii" 
+                             Larix decidua 
+                           "Larix decidua" 
+                 Leontodon hispidus s.lat. 
+                      "Leontodon hispidus" 
+                         Lophozia sudetica 
+                       "Lophozia sudetica" 
+      Malaxis monophyllos ssp. monophyllos 
+    "Malaxis monophyllos ssp. monophyllos" 
+  Minuartia cherlerioides ssp. quadrifaria 
+"Minuartia cherlerioides ssp. quadrifaria" 
+                           Mnium thomsonii 
+                         "Mnium thomsonii" 
+                        Moehringia ciliata 
+                      "Moehringia ciliata" 
+                         Nardia geoscyphus 
+                       "Nardia geoscyphus" 
+                        Parmelia saxatilis 
+                      "Parmelia saxatilis" 
+                           Phleum hirsutum 
+                         "Phleum hirsutum" 
+                      Pleurozium schreberi 
+                    "Pleurozium schreberi" 
+                       Potentilla crantzii 
+                     "Potentilla crantzii" 
+                         Ptilidium ciliare 
+                       "Ptilidium ciliare" 
+                   Racomitrium lanuginosum 
+                 "Racomitrium lanuginosum" 
+                Rhododendron × intermedium 
+              "Rhododendron × intermedium" 
+                         Rhytidium rugosum 
+                       "Rhytidium rugosum" 
+                        Saxifraga bryoides 
+                      "Saxifraga bryoides" 
+                           Schistidium sp. 
+                         "Schistidium sp." 
+            Silene acaulis ssp. longiscapa 
+          "Silene acaulis ssp. longiscapa" 
+                   Thelypteris limbosperma 
+                 "Thelypteris limbosperma" 
+                               Weissia sp. 
+                             "Weissia sp." 
+> source("/Users/roli/Documents/linktaxa/pkg/R/stripWhat.R")
+> x = taxa; y = reference
+> #	save for final validation
+> 	x0 <- x
+> 	
+> 	#	clean up string
+> 	if (strip) {
++ 		x <- stripAll(x)
++ 	}
+> x
+ [1] "Achillea millefolium ssp. sudetica"      
+ [2] "Antennaria carpatica"                    
+ [3] "Anthoxanthum alpinum"                    
+ [4] "Briza media"                             
+ [5] "Campanula pulla"                         
+ [6] "Carex capillaris"                        
+ [7] "Carex flacca ssp. flacca"                
+ [8] "Carex ornithopodoides"                   
+ [9] "Cephaloziella rubella var. rubella"      
+[10] "Chaerophyllum villarsii"                 
+[11] "Cirsium spinosissimum"                   
+[12] "Cladonia furcata ssp. furcata"           
+[13] "Cladonia phyllophora"                    
+[14] "Cladonia sulphurina"                     
+[15] "Crepis alpestris"                        
+[16] "Crepis aurea ssp. aurea"                 
+[17] "Ctenidium molluscum var. molluscum"      
+[18] "Cystopteris alpina"                      
+[19] "Cystopteris fragilis"                    
+[20] "Dactylorhiza majalis ssp. alpestris"     
+[21] "Dichodontium pellucidum"                 
+[22] "Dicranum brevifolium"                    
+[23] "Globularia nudicaulis"                   
+[24] "Gymnadenia conopsea ssp. conopsea"       
+[25] "Heliosperma pusillum ssp. pusillum"      
+[26] "Hieracium pilosum"                       
+[27] "Hypnum procerrimum"                      
+[28] "Isopterygiopsis pulchella var. nitidula" 
+[29] "Juncus jacquinii"                        
+[30] "Larix decidua"                           
+[31] "Leontodon hispidus"                      
+[32] "Lophozia sudetica"                       
+[33] "Malaxis monophyllos ssp. monophyllos"    
+[34] "Minuartia cherlerioides ssp. quadrifaria"
+[35] "Mnium thomsonii"                         
+[36] "Moehringia ciliata"                      
+[37] "Nardia geoscyphus"                       
+[38] "Parmelia saxatilis"                      
+[39] "Phleum hirsutum"                         
+[40] "Pleurozium schreberi"                    
+[41] "Potentilla crantzii"                     
+[42] "Ptilidium ciliare"                       
+[43] "Racomitrium lanuginosum"                 
+[44] "Rhododendron × intermedium"              
+[45] "Rhytidium rugosum"                       
+[46] "Saxifraga bryoides"                      
+[47] "Schistidium sp."                         
+[48] "Silene acaulis ssp. longiscapa"          
+[49] "Thelypteris limbosperma"                 
+[50] "Weissia sp."                             
+> 	#	if taxon is Genus sp. it has to match precisely
+> 	if (length(agrep(" sp.", x, max.distance = 0)) == 1) {
++ 		r <- agrep(x, y, max.distance = 0)	
++ 	}
+> 	else {
+Fehler: Unerwartete(s) 'else' in "        else"
+> 		#	first try
+> 		t1 <- agrep(x, y, max.distance = 0.05, ignore.case = TRUE)
+Warnmeldung:
+In agrep(x, y, max.distance = 0.05, ignore.case = TRUE) :
+  Argument 'pattern' hat einen Länge > 1 und nur das erste Element wird benutzt
+> 		if (length(t1) == 0) {
++ 			#	second try
++ 			#	drop intraspecific taxon (ssp.)
++ 			xx <- dropIntraspecific(x)
++ 			#	should return lower distance if ssp. is missing in y
++ 			t2 <- agrep(xx, y, max.distance = 0.1, ignore.case = TRUE)
++ 			if (length(t2) == 0) {
++ 				xx <- asSensuStricto(x)
++ 				t3 <- agrep(xx, y, max.distance = 0.1, ignore.case = TRUE)
++ 				if (length(t3) == 0) {
++ 					#	relax distance to return at least something similar	
++ 					r <- agrep(x, y, max.distance = max.distance, ignore.case = TRUE)	
++ 				}
++ 				else {
++ 					r <- t3					
++ 				}	
++ 			}
++ 			else {
++ 				r <- t2	
++ 			}
++ 		}
+> 		else {
+Fehler: Unerwartete(s) 'else' in "                else"
+> 			r <- t1
+> 		}		
+Fehler: Unerwartete(s) '}' in "                }"
+> 	}
+Fehler: Unerwartete(s) '}' in "        }"
+> 	#	if taxon is Genus sp. it has to match precisely
+> 	if (length(agrep(" sp.", x, max.distance = 0)) == 1) {
++ 		r <- agrep(x, y, max.distance = 0)	
++ 	}	else {
++ 		#	first try
++ 		t1 <- agrep(x, y, max.distance = 0.05, ignore.case = TRUE)
++ 		if (length(t1) == 0) {
++ 			#	second try
++ 			#	drop intraspecific taxon (ssp.)
++ 			xx <- dropIntraspecific(x)
++ 			#	should return lower distance if ssp. is missing in y
++ 			t2 <- agrep(xx, y, max.distance = 0.1, ignore.case = TRUE)
++ 			if (length(t2) == 0) {
++ 				xx <- asSensuStricto(x)
++ 				t3 <- agrep(xx, y, max.distance = 0.1, ignore.case = TRUE)
++ 				if (length(t3) == 0) {
++ 					#	relax distance to return at least something similar	
++ 					r <- agrep(x, y, max.distance = max.distance, ignore.case = TRUE)	
++ 				}				else {
++ 					r <- t3					
++ 				}	
++ 			}			else {
++ 				r <- t2	
++ 			}
++ 		}		else {
++ 			r <- t1
++ 		}		
++ 	}
+Warnmeldung:
+In agrep(x, y, max.distance = 0.05, ignore.case = TRUE) :
+  Argument 'pattern' hat einen Länge > 1 und nur das erste Element wird benutzt
+> x
+ [1] "Achillea millefolium ssp. sudetica"      
+ [2] "Antennaria carpatica"                    
+ [3] "Anthoxanthum alpinum"                    
+ [4] "Briza media"                             
+ [5] "Campanula pulla"                         
+ [6] "Carex capillaris"                        
+ [7] "Carex flacca ssp. flacca"                
+ [8] "Carex ornithopodoides"                   
+ [9] "Cephaloziella rubella var. rubella"      
+[10] "Chaerophyllum villarsii"                 
+[11] "Cirsium spinosissimum"                   
+[12] "Cladonia furcata ssp. furcata"           
+[13] "Cladonia phyllophora"                    
+[14] "Cladonia sulphurina"                     
+[15] "Crepis alpestris"                        
+[16] "Crepis aurea ssp. aurea"                 
+[17] "Ctenidium molluscum var. molluscum"      
+[18] "Cystopteris alpina"                      
+[19] "Cystopteris fragilis"                    
+[20] "Dactylorhiza majalis ssp. alpestris"     
+[21] "Dichodontium pellucidum"                 
+[22] "Dicranum brevifolium"                    
+[23] "Globularia nudicaulis"                   
+[24] "Gymnadenia conopsea ssp. conopsea"       
+[25] "Heliosperma pusillum ssp. pusillum"      
+[26] "Hieracium pilosum"                       
+[27] "Hypnum procerrimum"                      
+[28] "Isopterygiopsis pulchella var. nitidula" 
+[29] "Juncus jacquinii"                        
+[30] "Larix decidua"                           
+[31] "Leontodon hispidus"                      
+[32] "Lophozia sudetica"                       
+[33] "Malaxis monophyllos ssp. monophyllos"    
+[34] "Minuartia cherlerioides ssp. quadrifaria"
+[35] "Mnium thomsonii"                         
+[36] "Moehringia ciliata"                      
+[37] "Nardia geoscyphus"                       
+[38] "Parmelia saxatilis"                      
+[39] "Phleum hirsutum"                         
+[40] "Pleurozium schreberi"                    
+[41] "Potentilla crantzii"                     
+[42] "Ptilidium ciliare"                       
+[43] "Racomitrium lanuginosum"                 
+[44] "Rhododendron × intermedium"              
+[45] "Rhytidium rugosum"                       
+[46] "Saxifraga bryoides"                      
+[47] "Schistidium sp."                         
+[48] "Silene acaulis ssp. longiscapa"          
+[49] "Thelypteris limbosperma"                 
+[50] "Weissia sp."                             
+> y
+ [1] "Achillea millefolium ssp. sudetica"        
+ [2] "Antennaria carpatica"                      
+ [3] "Anthoxanthum alpinum"                      
+ [4] "Briza media"                               
+ [5] "Bryum creberrimum"                         
+ [6] "Campanula pulla"                           
+ [7] "Carex capillaris"                          
+ [8] "Carex flacca ssp. flacca"                  
+ [9] "Carex ornithopodoides"                     
+[10] "Cephaloziella rubella var. rubella"        
+[11] "Chaerophyllum villarsii"                   
+[12] "Cirsium spinosissimum"                     
+[13] "Cladonia furcata ssp. furcata"             
+[14] "Cladonia phyllophora"                      
+[15] "Cladonia sulphurina"                       
+[16] "Crepis alpestris"                          
+[17] "Crepis aurea"                              
+[18] "Ctenidium molluscum"                       
+[19] "Ctenidium procerrimum"                     
+[20] "Cystopteris alpina"                        
+[21] "Cystopteris fragilis"                      
+[22] "Cystopteris fragilis agg."                 
+[23] "Dactylorhiza majalis ssp. alpestris"       
+[24] "Dichodontium pellucidum"                   
+[25] "Dicranum brevifolium"                      
+[26] "Globularia nudicaulis"                     
+[27] "Gymnadenia conopsea ssp. conopsea"         
+[28] "Hieracium pilosum"                         
+[29] "Hygrohypnum ochraceum"                     
+[30] "Hypnum recurvatum"                         
+[31] "Isopterygiopsis pulchella"                 
+[32] "Juncus jacquinii"                          
+[33] "Larix decidua"                             
+[34] "Leontodon hispidus"                        
+[35] "Leontodon hispidus ssp. alpinus"           
+[36] "Leontodon hispidus ssp. hastilis"          
+[37] "Leontodon hispidus ssp. hyoseroides"       
+[38] "Leontodon hispidus ssp. opimus"            
+[39] "Leontodon hispidus ssp. pseudocrispus"     
+[40] "Lophozia sudetica"                         
+[41] "Malaxis monophyllos"                       
+[42] "Minuartia cherlerioides"                   
+[43] "Minuartia cherlerioides ssp. cherlerioides"
+[44] "Mnium thomsonii"                           
+[45] "Moehringia ciliata"                        
+[46] "Nardia geoscyphus"                         
+[47] "Parmelia saxatilis"                        
+[48] "Phleum hirsutum"                           
+[49] "Pleurozium schreberi"                      
+[50] "Potentilla crantzii"                       
+[51] "Ptilidium ciliare"                         
+[52] "Racomitrium lanuginosum"                   
+[53] "Rhododendron x intermedium"                
+[54] "Rhytidium rugosum"                         
+[55] "Saxifraga bryoides"                        
+[56] "Schistidium sp."                           
+[57] "Silene acaulis ssp. longiscapa"            
+[58] "Thelypteris limbosperma"                   
+[59] "Weissia sp."                               
+> seekTaxon("Schistidium sp.", reference)
+[1] "Schistidium sp."
+> seekTaxon("Silene", reference)
+[1] "Silene acaulis ssp. longiscapa"
+> seekTaxon("Leontodon", reference)
+[1] "Leontodon hispidus"                    "Leontodon hispidus ssp. opimus"       
+[3] "Leontodon hispidus ssp. alpinus"       "Leontodon hispidus ssp. hastilis"     
+[5] "Leontodon hispidus ssp. hyoseroides"   "Leontodon hispidus ssp. pseudocrispus"
+> sapply(taxa, seekTaxon)
+Fehler: y not provided
+> sapply(taxa, function (x) seekTaxon(x, reference))
+$`Achillea millefolium ssp. sudetica`
+[1] "Achillea millefolium ssp. sudetica"
+
+$`Antennaria carpatica`
+[1] "Antennaria carpatica"
+
+$`Anthoxanthum alpinum`
+[1] "Anthoxanthum alpinum"
+
+$`Briza media`
+[1] "Briza media"
+
+$`Campanula pulla`
+[1] "Campanula pulla"
+
+$`Carex capillaris`
+[1] "Carex capillaris"
+
+$`Carex flacca ssp. flacca`
+[1] "Carex flacca ssp. flacca"
+
+$`Carex ornithopodoides`
+[1] "Carex ornithopodoides"
+
+$`Cephaloziella rubella var. rubella`
+[1] "Cephaloziella rubella var. rubella"
+
+$`Chaerophyllum villarsii`
+[1] "Chaerophyllum villarsii"
+
+$`Cirsium spinosissimum`
+[1] "Cirsium spinosissimum"
+
+$`Cladonia furcata ssp. furcata`
+[1] "Cladonia furcata ssp. furcata"
+
+$`Cladonia phyllophora`
+[1] "Cladonia phyllophora"
+
+$`Cladonia sulphurina`
+[1] "Cladonia sulphurina"
+
+$`Crepis alpestris`
+[1] "Crepis alpestris"
+
+$`Crepis aurea ssp. aurea`
+[1] "Crepis aurea"
+
+$`Ctenidium molluscum var. molluscum`
+[1] "Ctenidium molluscum"
+
+$`Cystopteris alpina`
+[1] "Cystopteris alpina"
+
+$`Cystopteris fragilis s.str.`
+[1] "Cystopteris fragilis"      "Cystopteris fragilis agg."
+
+$`Dactylorhiza majalis ssp. alpestris`
+[1] "Dactylorhiza majalis ssp. alpestris"
+
+$`Dichodontium pellucidum`
+[1] "Dichodontium pellucidum"
+
+$`Dicranum brevifolium`
+[1] "Dicranum brevifolium"
+
+$`Globularia nudicaulis`
+[1] "Globularia nudicaulis"
+
+$`Gymnadenia conopsea ssp. conopsea`
+[1] "Gymnadenia conopsea ssp. conopsea"
+
+$`Heliosperma pusillum ssp. pusillum`
+[1] ""
+
+$`Hieracium pilosum`
+[1] "Hieracium pilosum"
+
+$`Hypnum procerrimum`
+[1] "Ctenidium procerrimum" "Hypnum recurvatum"     "Bryum creberrimum"    
+[4] "Hygrohypnum ochraceum"
+
+$`Isopterygiopsis pulchella var. nitidula`
+[1] "Isopterygiopsis pulchella"
+
+$`Juncus jacquinii`
+[1] "Juncus jacquinii"
+
+$`Larix decidua`
+[1] "Larix decidua"
+
+$`Leontodon hispidus s.lat.`
+[1] "Leontodon hispidus"                    "Leontodon hispidus ssp. opimus"       
+[3] "Leontodon hispidus ssp. alpinus"       "Leontodon hispidus ssp. hastilis"     
+[5] "Leontodon hispidus ssp. hyoseroides"   "Leontodon hispidus ssp. pseudocrispus"
+
+$`Lophozia sudetica`
+[1] "Lophozia sudetica"
+
+$`Malaxis monophyllos ssp. monophyllos`
+[1] "Malaxis monophyllos"
+
+$`Minuartia cherlerioides ssp. quadrifaria`
+[1] "Minuartia cherlerioides ssp. cherlerioides"
+[2] "Minuartia cherlerioides"                   
+
+$`Mnium thomsonii`
+[1] "Mnium thomsonii"
+
+$`Moehringia ciliata`
+[1] "Moehringia ciliata"
+
+$`Nardia geoscyphus`
+[1] "Nardia geoscyphus"
+
+$`Parmelia saxatilis`
+[1] "Parmelia saxatilis"
+
+$`Phleum hirsutum`
+[1] "Phleum hirsutum"
+
+$`Pleurozium schreberi`
+[1] "Pleurozium schreberi"
+
+$`Potentilla crantzii`
+[1] "Potentilla crantzii"
+
+$`Ptilidium ciliare`
+[1] "Ptilidium ciliare"
+
+$`Racomitrium lanuginosum`
+[1] "Racomitrium lanuginosum"
+
+$`Rhododendron × intermedium`
+[1] "Rhododendron x intermedium"
+
+$`Rhytidium rugosum`
+[1] "Rhytidium rugosum"
+
+$`Saxifraga bryoides`
+[1] "Saxifraga bryoides"
+
+$`Schistidium sp.`
+[1] "Schistidium sp."
+
+$`Silene acaulis ssp. longiscapa`
+[1] "Silene acaulis ssp. longiscapa"
+
+$`Thelypteris limbosperma`
+[1] "Thelypteris limbosperma"
+
+$`Weissia sp.`
+[1] "Weissia sp."
+
+> source("/Users/roli/Documents/linktaxa/pkg/R/seekTaxon.R")
+> source("/Users/roli/Documents/linktaxa/pkg/R/seekTaxon.R")
+> seekTaxa(taxa, reference)
+Fehler in FUN(c("Achillea millefolium ssp. sudetica", "Antennaria carpatica",  : 
+  '...' in falschem Kontext benutzt
+> source("/Users/roli/Documents/linktaxa/pkg/R/seekTaxon.R")
+> seekTaxa(taxa, reference)
+> source("/Users/roli/Documents/linktaxa/pkg/R/seekTaxon.R")
+> seekTaxa(taxa, reference)
+$`Achillea millefolium ssp. sudetica`
+[1] "Achillea millefolium ssp. sudetica"
+
+$`Antennaria carpatica`
+[1] "Antennaria carpatica"
+
+$`Anthoxanthum alpinum`
+[1] "Anthoxanthum alpinum"
+
+$`Briza media`
+[1] "Briza media"
+
+$`Campanula pulla`
+[1] "Campanula pulla"
+
+$`Carex capillaris`
+[1] "Carex capillaris"
+
+$`Carex flacca ssp. flacca`
+[1] "Carex flacca ssp. flacca"
+
+$`Carex ornithopodoides`
+[1] "Carex ornithopodoides"
+
+$`Cephaloziella rubella var. rubella`
+[1] "Cephaloziella rubella var. rubella"
+
+$`Chaerophyllum villarsii`
+[1] "Chaerophyllum villarsii"
+
+$`Cirsium spinosissimum`
+[1] "Cirsium spinosissimum"
+
+$`Cladonia furcata ssp. furcata`
+[1] "Cladonia furcata ssp. furcata"
+
+$`Cladonia phyllophora`
+[1] "Cladonia phyllophora"
+
+$`Cladonia sulphurina`
+[1] "Cladonia sulphurina"
+
+$`Crepis alpestris`
+[1] "Crepis alpestris"
+
+$`Crepis aurea ssp. aurea`
+[1] "Crepis aurea"
+
+$`Ctenidium molluscum var. molluscum`
+[1] "Ctenidium molluscum"
+
+$`Cystopteris alpina`
+[1] "Cystopteris alpina"
+
+$`Cystopteris fragilis s.str.`
+[1] "Cystopteris fragilis"      "Cystopteris fragilis agg."
+
+$`Dactylorhiza majalis ssp. alpestris`
+[1] "Dactylorhiza majalis ssp. alpestris"
+
+$`Dichodontium pellucidum`
+[1] "Dichodontium pellucidum"
+
+$`Dicranum brevifolium`
+[1] "Dicranum brevifolium"
+
+$`Globularia nudicaulis`
+[1] "Globularia nudicaulis"
+
+$`Gymnadenia conopsea ssp. conopsea`
+[1] "Gymnadenia conopsea ssp. conopsea"
+
+$`Heliosperma pusillum ssp. pusillum`
+[1] ""
+
+$`Hieracium pilosum`
+[1] "Hieracium pilosum"
+
+$`Hypnum procerrimum`
+[1] "Ctenidium procerrimum" "Hypnum recurvatum"     "Bryum creberrimum"    
+[4] "Hygrohypnum ochraceum"
+
+$`Isopterygiopsis pulchella var. nitidula`
+[1] "Isopterygiopsis pulchella"
+
+$`Juncus jacquinii`
+[1] "Juncus jacquinii"
+
+$`Larix decidua`
+[1] "Larix decidua"
+
+$`Leontodon hispidus s.lat.`
+[1] "Leontodon hispidus"                    "Leontodon hispidus ssp. opimus"       
+[3] "Leontodon hispidus ssp. alpinus"       "Leontodon hispidus ssp. hastilis"     
+[5] "Leontodon hispidus ssp. hyoseroides"   "Leontodon hispidus ssp. pseudocrispus"
+
+$`Lophozia sudetica`
+[1] "Lophozia sudetica"
+
+$`Malaxis monophyllos ssp. monophyllos`
+[1] "Malaxis monophyllos"
+
+$`Minuartia cherlerioides ssp. quadrifaria`
+[1] "Minuartia cherlerioides ssp. cherlerioides"
+[2] "Minuartia cherlerioides"                   
+
+$`Mnium thomsonii`
+[1] "Mnium thomsonii"
+
+$`Moehringia ciliata`
+[1] "Moehringia ciliata"
+
+$`Nardia geoscyphus`
+[1] "Nardia geoscyphus"
+
+$`Parmelia saxatilis`
+[1] "Parmelia saxatilis"
+
+$`Phleum hirsutum`
+[1] "Phleum hirsutum"
+
+$`Pleurozium schreberi`
+[1] "Pleurozium schreberi"
+
+$`Potentilla crantzii`
+[1] "Potentilla crantzii"
+
+$`Ptilidium ciliare`
+[1] "Ptilidium ciliare"
+
+$`Racomitrium lanuginosum`
+[1] "Racomitrium lanuginosum"
+
+$`Rhododendron × intermedium`
+[1] "Rhododendron x intermedium"
+
+$`Rhytidium rugosum`
+[1] "Rhytidium rugosum"
+
+$`Saxifraga bryoides`
+[1] "Saxifraga bryoides"
+
+$`Schistidium sp.`
+[1] "Schistidium sp."
+
+$`Silene acaulis ssp. longiscapa`
+[1] "Silene acaulis ssp. longiscapa"
+
+$`Thelypteris limbosperma`
+[1] "Thelypteris limbosperma"
+
+$`Weissia sp.`
+[1] "Weissia sp."
+
+> 

@@ -53,6 +53,21 @@ isSubspecies <- function (x) {
 	if (missing(x)) return(y) else .isWhat(x, y)
 }
 
+isVariety <- function (x) {
+	y <- c(
+		"var. ", "var."
+	)
+	if (missing(x)) return(y) else .isWhat(x, y)
+}
+
+isAggregate <- function (x) {
+	y <- c(
+		"agg. ", "agg.",
+		"aggr ", "aggr"
+	)
+	if (missing(x)) return(y) else .isWhat(x, y)
+}
+
 isHybrid <- function (x) {
 	y <- c(
 		"\u00D7", " x "
@@ -72,8 +87,8 @@ isAffinis <- function (x) {
 isWhat <- function (x) {
 	f <- c(
 		"isSensuLato", "isSensuStricto",
-		"isSubspecies", "isHybrid",
-		"isAffinis"
+		"isSubspecies", "isVariety",
+		"isHybrid",	"isAffinis", "isAggregate"
 	)
 	r <- sapply(f, function (f) do.call(f, list(x)))
 	return(r)

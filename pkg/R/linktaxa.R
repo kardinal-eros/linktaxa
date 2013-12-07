@@ -1,4 +1,3 @@
-#	x: a list
 ".castList" <- function (x, order = TRUE, ...) { # to penalty
 	stopifnot(is.list(x))
 	l <- sapply(x, length)
@@ -22,7 +21,8 @@
 		stringsAsFactors = FALSE)
 	if (order) {
 		r <- r[order(r$penalty, decreasing = TRUE), ]
-	}	
+	}
+	rownames(r) <- 1:nrow(r)
 	return(r)
 }
 
@@ -36,4 +36,7 @@ linktaxa <- function (x, y, ...) {
 	#p <- judgePenalty(r)
 	q <- queuePenalty(r, ...)
 	df <- .castList(q)
+	df[df == ""] <- NA
+	return(df)
+	
 }

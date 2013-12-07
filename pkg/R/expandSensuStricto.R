@@ -27,6 +27,3 @@ expandSensuStricto <- function (x) {
 	}
 	return(r)
 }
-
-#	isSensuStricto(x = "foo bar s.str.")
-#	expandSensuStricto(x = "foo bar s.str")

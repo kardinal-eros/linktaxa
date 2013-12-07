@@ -1,6 +1,5 @@
 judgePenalty <- function (x, tools = TRUE, clean = TRUE, verbose = FALSE) {
 	stopifnot(is.list(x))
-	require(stringdist)
 
 	#	loop over list x[i] and store results in list r[i]
 	r <- vector("list", length = length(x))
@@ -54,7 +53,7 @@ judgePenalty <- function (x, tools = TRUE, clean = TRUE, verbose = FALSE) {
 				}
 				else {					
 					if (verbose) message("no appropiate tool")
-					ii <- dropInfraspecific(ii)
+					ii <- dropIntraspecific(ii)
 				}								
 									}					
 								}

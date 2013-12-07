@@ -1,4 +1,3 @@
-#	Relax penalty for incomplete mathces
 relaxPenalty <- function (x, tool = c("ssp2sstr", "sstr2ssp", "slat2null", "str2null", "null2str")) {
 	r <- NULL
 	#	message(y)

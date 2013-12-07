@@ -1,5 +1,4 @@
-#	Test if matches correspond at least to genus
-compareGenus <- function (x, y, stop, verbose = FALSE) {
+compareGenus <- function (x, y, stop) {
 	if (is.list(x) & missing(y)) {
 		y <- sapply(x, "[[", 1)
 		x <- names(x)		
@@ -7,11 +6,11 @@ compareGenus <- function (x, y, stop, verbose = FALSE) {
 	x0 <- x == ""
 	y0 <- y == ""
 	
-	if (verbose) {
-		cat("empty strings:\n")
-		print(table(x = x0))
-		print(table(y = y0))
-	}
+	#if (verbose) {
+	#	cat("empty strings:\n")
+	#	print(table(x = x0))
+	#	print(table(y = y0))
+	#}
 	# for strsplit(x, " ") 
 	x[x0] <- " "
 	y[y0] <- " "

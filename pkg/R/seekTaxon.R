@@ -1,5 +1,9 @@
 seekTaxon <- function (x, y, max.distance = 0.3, strip = TRUE, exact = TRUE) {
+	#	x = taxa; y = reference
 	stopifnot(is.numeric(max.distance))
+	if (length(x) != 1) {
+		stop("use seekTaxa for vectors", call. = FALSE)
+	}
 	if (missing(x)) {
 		stop("x not provided", call. = FALSE)
 	}
@@ -29,8 +33,6 @@ seekTaxon <- function (x, y, max.distance = 0.3, strip = TRUE, exact = TRUE) {
 		}
 	}	
 	#	x = "Abietinella abietina var. abietina"
-	require(pbapply)
-	require(stringdist)
 	
 	#	save for final validation
 	x0 <- x
@@ -43,14 +45,13 @@ seekTaxon <- function (x, y, max.distance = 0.3, strip = TRUE, exact = TRUE) {
 	#	if taxon is Genus sp. it has to match precisely
 	if (length(agrep(" sp.", x, max.distance = 0)) == 1) {
 		r <- agrep(x, y, max.distance = 0)	
-	}
-	else {
+	}	else {
 		#	first try
 		t1 <- agrep(x, y, max.distance = 0.05, ignore.case = TRUE)
 		if (length(t1) == 0) {
 			#	second try
 			#	drop intraspecific taxon (ssp.)
-			xx <- dropInfraspecific(x)
+			xx <- dropIntraspecific(x)
 			#	should return lower distance if ssp. is missing in y
 			t2 <- agrep(xx, y, max.distance = 0.1, ignore.case = TRUE)
 			if (length(t2) == 0) {
@@ -59,16 +60,13 @@ seekTaxon <- function (x, y, max.distance = 0.3, strip = TRUE, exact = TRUE) {
 				if (length(t3) == 0) {
 					#	relax distance to return at least something similar	
 					r <- agrep(x, y, max.distance = max.distance, ignore.case = TRUE)	
-				}
-				else {
+				}				else {
 					r <- t3					
 				}	
-			}
-			else {
+			}			else {
 				r <- t2	
 			}
-		}
-		else {
+		}		else {
 			r <- t1
 		}		
 	}
@@ -92,5 +90,10 @@ seekTaxon <- function (x, y, max.distance = 0.3, strip = TRUE, exact = TRUE) {
 	if (length(r) == 0) {
 		r <- ""
 	}
+	return(r)
+}
+
+seekTaxa <- function (x, y, max.distance = 0.3, strip = TRUE, exact = TRUE) {
+	r <- sapply(taxa, function (x) seekTaxon(x, y, max.distance, strip, exact))
 	return(r)
 }

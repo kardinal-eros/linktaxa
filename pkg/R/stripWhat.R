@@ -32,7 +32,8 @@
 	#	doubled spaces between words
 	r <- gsub("\\s+", " ", r)
 	#	trim ends
-	r <- gsub("^\\s+|\\s+$", "", r)	
+	r <- gsub("^\\s+|\\s+$", "", r)
+	names(r) <- NULL	
 	return(r)	
 }
 
@@ -74,19 +75,3 @@ stripAll <- function (x, y) {
 	if (missing(x)) return(y) else .stripWhat(x, y)
 }
 		
-# examples
-#x <- c(
-#	"Quercus cf. pubescens",
-#	"Quercus pubescens s.lat.",
-#	"Quercus pubescens s.str")
-#stripAffinis()
-#stripAffinis(x)
-
-#stripSensuLato()
-#stripSensuLato(x)
-
-#stripSensuStricto()
-#stripSensuStricto(x)
-
-#stripAll()
-#stripAll(x)
