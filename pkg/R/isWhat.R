@@ -31,8 +31,9 @@
 isSensuLato <- function (x) {
 	#	x = "Luzula sylvatica s.lat."
 	y <- c(
-		"s.lat. ", "s.lat.", "s.lat",
-		"s.l. ", "s.l.", "sl.", "sl"
+		" s.lat. ", " s.lat.",
+		" s.lat", " s.lat ",
+		" s.l. ", " s.l.", " sl.", " sl"
 	)
 	if (missing(x)) return(y) else .isWhat(x, y)
 }
@@ -40,8 +41,8 @@ isSensuLato <- function (x) {
 isSensuStricto <- function (x) {
 	#	x = "Luzula multiflora s.str."
 	y <- c(
-		"s.str. ", "s.str.", "s.str",
-		"sstr ", "sstr"
+		" s.str. ", " s.str.", " s.str ",
+		" sstr ", " sstr"
 	)
 	if (missing(x)) return(y) else .isWhat(x, y)
 }
@@ -53,17 +54,45 @@ isSubspecies <- function (x) {
 	if (missing(x)) return(y) else .isWhat(x, y)
 }
 
+isSensuStrictoSubspecies <- function (x) {
+	if (missing(x)) {
+		""
+	} else {
+		r <- isSubspecies(x)
+		l <- .split0(x)
+		lr <- sapply(l[r], function (x) {
+			x[2] == x[4] # not so rigid? stringdist(x[2], x[4])
+		})
+		r[which(r)] <- lr
+		return(r)	
+	}
+}
+
 isVariety <- function (x) {
 	y <- c(
-		"var. ", "var."
+		" var. ", " var."
 	)
 	if (missing(x)) return(y) else .isWhat(x, y)
 }
 
+isSensuStrictoVariety <- function (x) {
+	if (missing(x)) {
+		""
+	} else {
+		r <- isVariety(x)
+		l <- .split0(x)
+		lr <- sapply(l[r], function (x) {
+			x[2] == x[4] # not so rigid? stringdist(x[2], x[4])
+		})
+		r[which(r)] <- lr
+		return(r)	
+	}
+}
+
 isAggregate <- function (x) {
 	y <- c(
-		"agg. ", "agg.",
-		"aggr ", "aggr"
+		" agg. ", " agg.",
+		" aggr ", " aggr"
 	)
 	if (missing(x)) return(y) else .isWhat(x, y)
 }
@@ -77,18 +106,27 @@ isHybrid <- function (x) {
 
 isAffinis <- function (x) {
 	y <- c(
-		"cf. ", "cf.",
-		"aff. ", "aff.", "aff ", 
-		"affin. ", "affin." 
+		" cf. ", " cf.",
+		" aff. ", " aff.", " aff ", 
+		" affin. ", " affin." 
+	)
+	if (missing(x)) return(y) else .isWhat(x, y)		
+}
+
+isGenus <- function (x) {
+	y <- c(
+		" sp. ", " sp.", " sp ",
+		" spp. ", " spp.", " spp " 
 	)
 	if (missing(x)) return(y) else .isWhat(x, y)		
 }
 
 isWhat <- function (x) {
 	f <- c(
-		"isSensuLato", "isSensuStricto",
-		"isSubspecies", "isVariety",
-		"isHybrid",	"isAffinis", "isAggregate"
+		"isSensuLato", "isSensuStricto", "isSensuStrictoSubspecies",
+		"isSubspecies", "isVariety", "isSensuStrictoVariety",
+		"isHybrid",	"isAffinis", "isAggregate",
+		"isGenus"
 	)
 	r <- sapply(f, function (f) do.call(f, list(x)))
 	return(r)
