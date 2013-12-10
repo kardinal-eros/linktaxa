@@ -1,3 +1,6 @@
+#	does not yet handle character vectors
+#	must use: sapply(x, expandSensuStricto)
+
 expandSensuStricto <- function (x) {
 	#	x = "Luzula multiflora s.str."
 	if (is.list(x)) {
@@ -8,9 +11,9 @@ expandSensuStricto <- function (x) {
 		for (i in ii) {
 			ri <- rl[[ i ]]
 			j <- which(sapply(ri, isSensuStricto))
-			r1 <- paste(ri[-j], collapse = " ")
+			r1 <- paste(ri[ -j ], collapse = " ")
 			#	assume specific epitheton is the word before s.str.
-			r2 <- paste("ssp.", ri[j - 1], collapse = " ")
+			r2 <- paste("ssp.", ri[ j - 1 ], collapse = " ")
 			ri <- paste(r1, r2)
 			r[i] <- ri
 		}
@@ -19,9 +22,9 @@ expandSensuStricto <- function (x) {
 		if (isSensuStricto(x)) {
 			r <- strsplit(x, " ", fixed = TRUE)[[1]]
 			i <- which(sapply(r, isSensuStricto))
-			r1 <- paste(r[-i], collapse = " ")
+			r1 <- paste(r[ -i ], collapse = " ")
 			#	assume specific epitheton is the word before s.str.
-			r2 <- paste("ssp.", r[i - 1], collapse = " ")
+			r2 <- paste("ssp.", r[ i - 1 ], collapse = " ")
 			r <- paste(r1, r2)
 		}
 	}
