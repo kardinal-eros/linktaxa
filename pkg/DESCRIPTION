@@ -26,4 +26,6 @@ Collate: isWhat.R
          compareGenus.R
          queuePenalty.R
          linktaxa.R
+         split.R
+         abbreviate.R
 
