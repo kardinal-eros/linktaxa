@@ -43,7 +43,7 @@ stripSensuLato <- function (x, y) {
 		"s. lat. ", "s. lat.", "s. lat",
 		"s.l. ", "s.l.",
 		"s. l. ", "s. l.",
-		"sl.", "sl"
+		"sl." #	"sl" better not
 	)	
 	if (missing(x)) return(y) else .stripWhat(x, y)
 }
