@@ -27,5 +27,7 @@ Collate: isWhat.R
          queuePenalty.R
          linktaxa.R
          split.R
+         prune.R
          abbreviate.R
+         tplFamily.R
 
