@@ -27,6 +27,8 @@
 }
 
 linktaxa <- function (x, y, ...) {
+	stopifnot(is.vector(x))
+	stopifnot(is.vector(y))
 	require(pbapply)	
 	r <- pbsapply(x, function (x) seekTaxon(x, y), simplify = FALSE)
 	
