@@ -26,7 +26,7 @@
 	return(r)
 }
 
-linktaxa <- function (x, y, ...) {
+linktaxa <- function (x, y, order = TRUE, ...) {
 	stopifnot(is.vector(x))
 	stopifnot(is.vector(y))
 	require(pbapply)	
@@ -37,7 +37,7 @@ linktaxa <- function (x, y, ...) {
 	#}
 	#p <- judgePenalty(r)
 	q <- queuePenalty(r, ...)
-	df <- .castList(q)
+	df <- .castList(q, order = order)
 	df[df == ""] <- NA
 	return(df)
 	
