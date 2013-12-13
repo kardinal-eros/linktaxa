@@ -66,7 +66,7 @@ stripAffinis <- function (x, y) {
 	if (missing(x)) return(y) else .stripWhat(x, y)		
 }
 
-stripAll <- function (x, y) {
+stripAll <- function (x) {
 	y <- c(
 		stripSensuLato(),
 		stripSensuStricto(),
