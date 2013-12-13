@@ -16,7 +16,7 @@ dropIntraspecific <- function (x, y) {
 		x <- strsplit(x, " ", fixed = TRUE)[[1]]		
 		i <- sapply(y, function (z) grep(z, x, fixed = TRUE))
 		if (any(sapply(i, length) > 1)) {
-			message("abigous matches for", y, "in", paste(x, collapse = ""))
+			message("abigous matches for ", y, " in ", paste(x, collapse = " "))
 		}
 		else {
 			ii <- sapply(i, length) > 0		
