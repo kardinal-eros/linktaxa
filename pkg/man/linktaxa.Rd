@@ -1,29 +1,34 @@
 \name{linktaxa}
 \alias{linktaxa}
-%- Also NEED an '\alias' for EACH other topic documented here.
+
 \title{
 Link two species lists
 }
+
 \description{
 A single function internally calling subroutines and returning an ordered data frame of string matches.
 }
+
 \usage{
-linktaxa(x, y, ...)
+linktaxa(x, y, order = TRUE, ...)
 }
 
 \arguments{
   \item{ x }{
-a character.
+\code{character}.
 }
   \item{ y }{
-a character.
+\code{character}.
+}
+  \item{ order }{
+\code{logical}.
 }
   \item{ \dots }{
-arguments passed to
+arguments passed to \code{\link{queuePenalty}}.
 }
 }
 \details{
-Nothing here yet.
+If \code{order} is \code{TRUE} results are ordered according to penalty score, if \code{FASLE} input order of \code{x} is retained.
 }
 \value{
 a data.frame.

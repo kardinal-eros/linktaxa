@@ -13,7 +13,7 @@ The functions translate taxon strings by stripping of common taxonomic markups s
 }
 
 \usage{
-stripAll(x, y)
+stripAll(x)
 stripAffinis(x, y)
 stripSensuLato(x, y)
 stripSensuStricto(x, y)
