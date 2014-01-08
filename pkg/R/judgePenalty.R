@@ -67,7 +67,7 @@ judgePenalty <- function (x, tools = TRUE, clean = TRUE, verbose = FALSE) {
 		else {
 			ii <- stringdist(names(x[i]), unlist(x[i]))
 		}
-					
+				
 		if (any(ii > 0)) {
 			if (any(ii == 0)) {
 				r[[i]] <- rank(ii) - 1

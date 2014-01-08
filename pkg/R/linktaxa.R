@@ -35,7 +35,10 @@ linktaxa <- function (x, y, order = TRUE, ...) {
 	#for (i in seq_along(x)) {
 	#	r <- seekTaxon(x[i], y)
 	#}
+	
 	#p <- judgePenalty(r)
+	#q <- judgePenalty(r)
+	#q <- queuePenalty(r)
 	q <- queuePenalty(r, ...)
 	df <- .castList(q, order = order)
 	df[df == ""] <- NA
