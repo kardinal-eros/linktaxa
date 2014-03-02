@@ -29,6 +29,13 @@
 linktaxa <- function (x, y, order = TRUE, ...) {
 	stopifnot(is.vector(x))
 	stopifnot(is.vector(y))
+
+	#	if we get factors	
+	if (!inherits(x, "character"))
+		x <- as.character(x)
+	if (!inherits(y, "character"))
+		y <- as.character(y)
+	
 	require(pbapply)	
 	r <- pbsapply(x, function (x) seekTaxon(x, y), simplify = FALSE)
 	
