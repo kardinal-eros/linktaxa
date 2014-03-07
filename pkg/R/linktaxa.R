@@ -1,5 +1,6 @@
 ".castList" <- function (x, order = TRUE, ...) { # to penalty
 	stopifnot(is.list(x))
+		
 	l <- sapply(x, length)
 	r <- matrix("", nrow = length(x), ncol = max(l))
 	for (i in 1:length(x)) {
@@ -26,29 +27,36 @@
 	return(r)
 }
 
-linktaxa <- function (x, y, order = TRUE, ...) {
+linktaxa <- function (x, y, order = TRUE, file, sep = ";", overwrite = FALSE, ...) {
+
 	stopifnot(is.vector(x))
 	stopifnot(is.vector(y))
 
-	#	if we get factors	
 	if (!inherits(x, "character"))
 		x <- as.character(x)
 	if (!inherits(y, "character"))
 		y <- as.character(y)
+		
+	if (!missing(file)) {
+		if (file.exists(file) & !overwrite)
+			stop("output file exits:\n", file,
+				"\nuse overwrite = TRUE", call. = FALSE)
+	}		
 	
 	require(pbapply)	
+	
 	r <- pbsapply(x, function (x) seekTaxon(x, y), simplify = FALSE)
-	
-	#for (i in seq_along(x)) {
-	#	r <- seekTaxon(x[i], y)
-	#}
-	
-	#p <- judgePenalty(r)
-	#q <- judgePenalty(r)
-	#q <- queuePenalty(r)
+
 	q <- queuePenalty(r, ...)
 	df <- .castList(q, order = order)
 	df[df == ""] <- NA
 	return(df)
+
+	#	write file
+	if (!missing(file)) {
+		con <- file(file)
+			write.csv(df, con, sep = sep, row.names = FALSE)
+		close(con)
+	}
 	
 }
