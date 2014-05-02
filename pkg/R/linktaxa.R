@@ -38,9 +38,7 @@ linktaxa <- function (x, y, order = TRUE, file, sep = ";", overwrite = FALSE, ..
 		y <- as.character(y)
 		
 	if (!missing(file)) {
-		if (file.exists(file) & !overwrite)
-			stop("output file exits:\n", file,
-				"\nuse overwrite = TRUE", call. = FALSE)
+
 	}		
 	
 	require(pbapply)	
@@ -50,13 +48,17 @@ linktaxa <- function (x, y, order = TRUE, file, sep = ";", overwrite = FALSE, ..
 	q <- queuePenalty(r, ...)
 	df <- .castList(q, order = order)
 	df[df == ""] <- NA
-	return(df)
 
 	#	write file
 	if (!missing(file)) {
-		con <- file(file)
-			write.csv(df, con, sep = sep, row.names = FALSE)
-		close(con)
+		if (file.exists(file) & !overwrite) {
+			stop("output file exits:\n", file,
+				"\nuse overwrite = TRUE", call. = FALSE)
+		} else {		
+			#con <- file(file)
+			write.table(df, file, sep = sep, row.names = FALSE)
+			#close(con)
+		}
 	}
-	
+	return(df)	
 }
