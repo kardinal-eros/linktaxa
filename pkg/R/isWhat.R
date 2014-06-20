@@ -49,7 +49,7 @@ isSensuStricto <- function (x) {
 
 isSubspecies <- function (x) {
 	y <- c(
-		"ssp.", "supsp."
+		"ssp.", "subsp."
 	)
 	if (missing(x)) return(y) else .isWhat(x, y)
 }
