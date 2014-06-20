@@ -99,7 +99,7 @@ isAggregate <- function (x) {
 
 isHybrid <- function (x) {
 	y <- c(
-		"\u00D7", " x ", "-" # maybe more dashes?
+		"\u00D7", " x "#  "-" dashes?
 	)
 	if (missing(x)) return(y) else .isWhat(x, y)
 }
