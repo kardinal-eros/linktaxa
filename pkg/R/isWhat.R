@@ -129,5 +129,26 @@ isWhat <- function (x) {
 		"isGenus"
 	)
 	r <- sapply(f, function (f) do.call(f, list(x)))
+	#	only one element shoud be TRUE
+	#	isSensuStrictoSubspecies & isSubspecies
+	if (class(r) == "list") {
+	if (r[[3]] & r[[4]]) r[[4]] <- FALSE
+	}
+	if (class(r) == "matrix") {
+		for (i in 1:nrow(r)) {
+			if (r[[i, 3]] & r[[i, 4]]) r[[i, 4]] <- FALSE			
+		}
+		
+	}
+	#	isVariety & isSensuStrictoVariety
+	if (class(r) == "list") {
+	if (r[[5]] & r[[6]]) r[[5]] <- FALSE
+	}
+	if (class(r) == "matrix") {
+		for (i in 1:nrow(r)) {
+			if (r[[i, 5]] & r[[i, 6]]) r[[i, 5]] <- FALSE			
+		}
+		
+	}
 	return(r)
 }
