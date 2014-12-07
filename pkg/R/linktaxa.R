@@ -54,10 +54,9 @@ linktaxa <- function (x, y, order = TRUE, file, sep = ";", overwrite = FALSE, ..
 		if (file.exists(file) & !overwrite) {
 			stop("output file exits:\n", file,
 				"\nuse overwrite = TRUE", call. = FALSE)
-		} else {		
-			#con <- file(file)
-			write.table(df, file, sep = sep, row.names = FALSE)
-			#close(con)
+		}
+		else {		
+			write.table(df, file, sep = sep, row.names = FALSE, quote = FALSE)
 		}
 	}
 	return(df)	
