@@ -27,7 +27,7 @@
 	return(r)
 }
 
-linktaxa <- function (x, y, order = TRUE, file, sep = ";", overwrite = FALSE, ...) {
+linktaxa <- function (x, y, order = TRUE, file, sep = ",", overwrite = FALSE, ...) {
 
 	stopifnot(is.vector(x))
 	stopifnot(is.vector(y))

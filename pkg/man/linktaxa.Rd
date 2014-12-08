@@ -10,7 +10,7 @@ A single function internally calling subroutines and returning an ordered data f
 }
 
 \usage{
-linktaxa(x, y, order = TRUE, file, sep = ";", overwrite = FALSE, ...)
+linktaxa(x, y, order = TRUE, file, sep = ",", overwrite = FALSE, ...)
 }
 
 \arguments{
