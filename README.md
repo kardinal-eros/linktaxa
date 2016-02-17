@@ -1,6 +1,12 @@
 linktaxa
 ========
 
+Build status
+------------
+
+[![Travis-CI Build Status](https://travis-ci.org/kardinal-eros/linktaxa.svg?branch=master)](https://travis-ci.org/kardinal-eros/linktaxa)
+<!-- [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/linktaxa)](http://cran.r-project.org/package=linktaxa) -->
+
 About
 -----
 
