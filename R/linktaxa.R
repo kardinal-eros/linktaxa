@@ -28,7 +28,7 @@
 }
 
 linktaxa <- function (x, y, order = TRUE, file, sep = ",", overwrite = FALSE, ...) {
-
+	requireNamespace(pbapply)
 	stopifnot(is.vector(x))
 	stopifnot(is.vector(y))
 
@@ -41,9 +41,7 @@ linktaxa <- function (x, y, order = TRUE, file, sep = ",", overwrite = FALSE, ..
 
 	}		
 	
-	require(pbapply)	
-	
-	r <- pbsapply(x, function (x) seekTaxon(x, y), simplify = FALSE)
+	r <- pbapply::pbsapply(x, function (x) seekTaxon(x, y), simplify = FALSE)
 
 	q <- queuePenalty(r, ...)
 	df <- .castList(q, order = order)

@@ -94,6 +94,6 @@ seekTaxon <- function (x, y, max.distance = 0.3, strip = TRUE, exact = TRUE) {
 }
 
 seekTaxa <- function (x, y, max.distance = 0.3, strip = TRUE, exact = TRUE) {
-	r <- sapply(taxa, function (x) seekTaxon(x, y, max.distance, strip, exact))
+	r <- sapply(x, function (x) seekTaxon(x, y, max.distance, strip, exact))
 	return(r)
 }
