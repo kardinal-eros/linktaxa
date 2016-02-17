@@ -28,7 +28,7 @@
 }
 
 linktaxa <- function (x, y, order = TRUE, file, sep = ",", overwrite = FALSE, ...) {
-	requireNamespace(pbapply)
+	requireNamespace("pbapply")
 	stopifnot(is.vector(x))
 	stopifnot(is.vector(y))
 
