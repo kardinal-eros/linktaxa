@@ -23,7 +23,7 @@ install.packages("devtools")
 
 library(devtools)
 
-install_github("kardinal-eros/linktaxa/pkg")
+install_github("kardinal-eros/linktaxa")
 
 library(linktaxa)
 ```
