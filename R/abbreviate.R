@@ -22,7 +22,7 @@ abbreviateSensuLato <- function (x) {
 
 abbreviateSensuStricto <- function (x) {
 	a <- lapply(x, "paste", collapse = " ")	
-	a <- strsplit(sapply(a, expandSensuStricto), " ", fixed = TRUE)
+	a <- strsplit(expandSensuStricto(a), " ", fixed = TRUE)
 	a <- lapply(lapply(.triple(a), "substring", 1, 4), "paste", collapse = " ")
 	return(a)
 }

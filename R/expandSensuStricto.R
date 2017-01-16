@@ -1,5 +1,18 @@
-#	does not yet handle character vectors
-#	must use: sapply(x, expandSensuStricto)
+".expandSensuStricto" <- function (x) {
+	stopifnot(length(x) == 1)
+	if (isSensuStricto(x)) {
+		#	assume specific epitheton is the word before s.str.
+		r <- .split0(x)[[1]]
+		i <- str_trim(isSensuStricto(), "left") # remove leading space
+		i <- unlist(sapply(i, function (x) which(x == r)))
+		r2 <- paste("ssp.", r[ i - 1 ], collapse = " ")
+		r1 <- paste(r[ -i ], collapse = " ")
+		r <- paste(r1, r2)
+	} else {
+		r <- x
+	}
+	return(r)	
+}
 
 expandSensuStricto <- function (x) {
 	#	x = "Luzula multiflora s.str."
@@ -19,13 +32,10 @@ expandSensuStricto <- function (x) {
 		}
 	}
 	else {
-		if (isSensuStricto(x)) {
-			r <- strsplit(x, " ", fixed = TRUE)[[1]]
-			i <- which(sapply(r, isSensuStricto))
-			r1 <- paste(r[ -i ], collapse = " ")
-			#	assume specific epitheton is the word before s.str.
-			r2 <- paste("ssp.", r[ i - 1 ], collapse = " ")
-			r <- paste(r1, r2)
+		if (any(isSensuStricto(x))) {
+			r <- sapply(x, .expandSensuStricto)
+		} else {
+			r <- x
 		}
 	}
 	return(r)

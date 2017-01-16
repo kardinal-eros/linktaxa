@@ -1,5 +1,6 @@
 \name{prune}
 \alias{pruneGenus}
+\alias{pruneSpecies}
 
 \title{ Prune taxa }
 
@@ -9,6 +10,7 @@ Prune Genus from taxon string
 
 \usage{
 pruneGenus(x)
+pruneSpecies(x)
 }
 
 \arguments{
@@ -31,6 +33,16 @@ Roland Kaiser
 \code{\link{isWhat}}
 }
 \examples{
-# nOthing here yet
+x <- c(
+    "Thalictrum simplex s.lat.",
+    "Thalictrum simplex s.str.",
+    "Thalictrum simplex ssp. simplex",
+    "Abietinella abietina var. abietina",
+    "Mentha \u00D7 dumetorum", # MULTIPLICATION SIGN (U+00D7) \u00D7
+    "Mentha x dumetorum", # standard x gylph as multiplication sign
+    "Mentha cf. arvensis",
+    "Achillea millefolium agg.",
+    "Bellis perennis")
+pruneSpecies(x)
 }
 \keyword{ manip }

@@ -74,4 +74,3 @@ stripAll <- function (x) {
 	)	
 	if (missing(x)) return(y) else .stripWhat(x, y)
 }
-		

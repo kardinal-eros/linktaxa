@@ -42,7 +42,7 @@ isSensuStricto <- function (x) {
 	#	x = "Luzula multiflora s.str."
 	y <- c(
 		" s.str. ", " s.str.", " s.str ",
-		" sstr ", " sstr"
+		" s.str", " sstr ", " sstr"
 	)
 	if (missing(x)) return(y) else .isWhat(x, y)
 }
@@ -58,6 +58,8 @@ isSensuStrictoSubspecies <- function (x) {
 	if (missing(x)) {
 		""
 	} else {
+		i <- isSensuStricto(x)
+		expandSensuStricto(x)
 		r <- isSubspecies(x)
 		l <- .split0(x)
 		lr <- sapply(l[r], function (x) {
@@ -129,6 +131,7 @@ isWhat <- function (x) {
 		"isGenus"
 	)
 	r <- sapply(f, function (f) do.call(f, list(x)))
+	
 	#	only one element shoud be TRUE
 	#	isSensuStrictoSubspecies & isSubspecies
 	if (class(r) == "list") {
@@ -150,5 +153,13 @@ isWhat <- function (x) {
 		}
 		
 	}
+
+	r <- cbind(r, isResolved = rowSums(r == T) > 0)	
+	return(r)
+}
+
+isResolved <- function (x) {
+	r <- isWhat(x)
+	r <- r[ unlist(r[ ,grep("isResolved", colnames(r)) ]), ]
 	return(r)
 }

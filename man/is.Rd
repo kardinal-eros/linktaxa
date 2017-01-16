@@ -1,5 +1,6 @@
 \name{is}
 \alias{isWhat}
+\alias{isResolved}
 \alias{isSensuLato}
 \alias{isSensuStricto}
 \alias{isSensuStrictoSubspecies}
@@ -19,6 +20,7 @@ Functions to test character strings for belonging to specific cases used in scie
 
 \usage{
 isWhat(x)
+isResolved(x)
 isSensuLato(x)
 isSensuStricto(x)
 isSensuStrictoSubspecies(x)
@@ -39,6 +41,8 @@ a character string, or a named list of character string, in which case names(x) 
 \details{
 \describe{
 \item{ \code{isWhat} }{applies all the below listed (sub-)functions in a single step.}
+
+\item{ \code{isResolved} }{applies isWhat but returns only elements where isResolved is TRUE.}
 
 \item{ \code{isSensuLato} }{test for \emph{sensu lato} (s.lat.) taxon.}
 
@@ -87,9 +91,12 @@ x <- c(
     "Mentha \u00D7 dumetorum", # MULTIPLICATION SIGN (U+00D7) \u00D7
     "Mentha x dumetorum", # standard x gylph as multiplication sign
     "Mentha cf. arvensis",
-    "Achillea millefolium agg.")
+    "Achillea millefolium agg.",
+    "Bellis perennis")
 
 isWhat(taxa)
+
+isResolved(taxa)
 }
 
 \keyword{ manip }

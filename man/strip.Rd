@@ -28,7 +28,7 @@ strings to be matched, if missing sensible defaults apply.
 }
 }
 \details{
-Call functions without arguments to see which strings are going to be removed from taxon names for a particular function.
+Call functions without arguments to see which strings are going to be removed from taxon names for a particular function. Note, \code{stripAll} returns the nominant species name (Genus species).
 }
 \value{
 character.
