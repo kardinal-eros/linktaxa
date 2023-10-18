@@ -1,8 +1,8 @@
 dropIntraspecific <- function (x, y) {
-	#	x = "Gentiana bavarica var. subacaulis"
+	#	x = "Asplenium × alternifolium nsubsp. alternifolium (= A. septentrionale ssp. septentrionale × A. trichomanes ssp. trichomanes)"
 	if (missing(y)) {
 		y <- c(
-			"var.", "ssp.", "subsp."
+			"var.", "ssp.", "subsp.", "nsubsp."
 		)
 	}
 	if (missing(x)) {
@@ -16,7 +16,8 @@ dropIntraspecific <- function (x, y) {
 		x <- strsplit(x, " ", fixed = TRUE)[[1]]		
 		i <- sapply(y, function (z) grep(z, x, fixed = TRUE))
 		if (any(sapply(i, length) > 1)) {
-			message("abigous matches for ", y, " in ", paste(x, collapse = " "))
+			message("ambigous matches for ", y, " in ", paste(x, collapse = " "))
+			ii <- FALSE
 		}
 		else {
 			ii <- sapply(i, length) > 0		
